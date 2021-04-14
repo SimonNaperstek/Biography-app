@@ -75,9 +75,9 @@ router.post('/uploadfile', auth,async(req,res)=>{
                 .fromFile(location)
                 .then((jsonObj)=>{
                     console.log('this is : '+jsonObj);
-                    let d;
+                  
                     jsonObj.forEach(async function(item){
-                        
+                         let d;
                         console.log(item);
                         d=item;
                      await   dbs.collection(type).add({
@@ -373,13 +373,13 @@ router.get('/writingType/:type',auth,(req,res)=>{
     console.log(req.params.type);
     if(req.params.type == 'himSelf'){
         res.render('screen/writingType',{type: req.params.type})
-    } 
+    }
     else if(req.params.type == 'herSelf'){
         res.render('screen/writingType',{type: req.params.type})
     }  
     else if(req.params.type == 'mySelf'){
         res.render('screen/writingType',{type: req.params.type})
-    }   
+    } 
     else{ 
         res.redirect('/screen/admin')
     }
