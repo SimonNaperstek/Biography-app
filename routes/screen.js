@@ -102,28 +102,11 @@ router.post('/uploadfile', auth,async(req,res)=>{
                 res.redirect('/screen/admin');
             }
         })
-        // const jsonArray = await csv().fromFile('./public/upload/'+filename);
-      
+
     }else{
         res.redirect('/screen/admin');
     }
 })
-
-// id, question
-//const csvFilePath='file.csv'
-//const csv=require('csvtojson')
-// csv()
-// .fromFile(location)
-// .then((jsonObj)=>{
-//     console.log(jsonObj);
-   
-// })
-
- 
-// Async / await usage
-//const jsonArray=await csv().fromFile(csvFilePath);
-   
-// deleting all collection
 
 
 
@@ -151,7 +134,7 @@ router.post('/signin', async (req,res) => {
         // maxAge: 60000,
         maxAge: 60*60*6*1000,
         httpOnly: true
-        //  ,secure: true
+         ,secure: true
         })
             res.redirect("/screen/admin");
         })
@@ -448,13 +431,14 @@ router.post('/request', async(req,res)=>{
         }
     },(err, result)=>{
         if(err != null) {
+            res.json({result:'false'})
             console.log('success: false');
             console.log(err);
                 res.send({success:false,error:err});
         }
         else{
             res.json({
-                result: 'success'
+                result: 'true'
             });
         }
     })
