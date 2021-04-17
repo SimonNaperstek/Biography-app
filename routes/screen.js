@@ -14,7 +14,7 @@ const gateway = new braintree.BraintreeGateway({
     environment: braintree.Environment.Sandbox,
     merchantId: 'gsvpjdndywph2qhd',
     publicKey:'j96ndx9hj4ny6m6y',
-    privateKey:'privateKey'
+    privateKey:'89afbc59b04d256e6d1f856a48521aab'
     // privateKey:'89afbc59b04d256e6d1f856a48521aab'
 });
 
