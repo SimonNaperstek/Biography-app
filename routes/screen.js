@@ -8,6 +8,16 @@ const auth = require('../auth')
 const jwt = require('jsonwebtoken');
 const csv = require('csvtojson');
 
+// nounce
+const braintree= require('braintree');
+const gateway = new braintree.BraintreeGateway({
+    environment: braintree.Environment.Sandbox,
+    merchantId: 'gsvpjdndywph2qhd',
+    publicKey:'j96ndx9hj4ny6m6y ',
+    privateKey:'89afbc59b04d256e6d1f856a48521aab'
+});
+
+
 firebase.auth.Auth.Persistence.NONE;
 
 
@@ -52,7 +62,7 @@ router.post('/uploadfile', auth,async(req,res)=>{
 //     }).catch(err=>{
 //         console.log(err);
 //     })
-    if(req.files){
+    if(req.files && firebase.auth().currentUser){
         console.log(req.files)
         var file = req.files.filename
         var filename= file.name;
@@ -140,7 +150,7 @@ router.post('/signin', async (req,res) => {
         // maxAge: 60000,
         maxAge: 60*60*6*1000,
         httpOnly: true
-         ,secure: true
+        //  ,secure: true
         })
             res.redirect("/screen/admin");
         })
@@ -384,6 +394,35 @@ router.get('/writingType/:type',auth,(req,res)=>{
         res.redirect('/screen/admin')
     }
 })
+
+// Nounce request
+router.post('/request', async(req,res)=>{
+    const nounceFromTheClient = req.body.nonce;
+    const deviceData = req.body.device_data;
+    const amount = req.body.amount;
+    // const amount = '1.0';
+
+    gateway.transaction.sale({
+        amount:amount,
+        // paymentMethodNounce:nounceFromTheClient,
+        paymentMethodNounce:'fake-paypal-one-time-nounce',
+        deviceData:deviceData,
+        options: {
+            submitForSettlement: true 
+        }
+    },(err, result)=>{
+        if(err != null) {
+                res.send({success:false});
+        }
+        else{
+            res.json({
+                result: 'success'
+            });
+        }
+    })
+
+})
+
 
 
 
