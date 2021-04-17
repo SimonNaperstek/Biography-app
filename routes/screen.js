@@ -433,15 +433,15 @@ router.get('/request', (req,res)=>{
 // Nounce request
 router.post('/request', async(req,res)=>{
     console.log('request recevied!');
-    const nounceFromTheClient = req.body.payment_method_nonce;
-    const deviceData = req.body.device_data;
+    const nonceFromTheClient = req.body.payment_method_nonce;
+    const deviceData = req.body.deviceData;
     const amount = req.body.amount;
     // const amount = '1.0';
 
     gateway.transaction.sale({
         amount:amount,
-        // paymentMethodNounce:nounceFromTheClient,
-        paymentMethodNounce:nounceFromTheClient,
+      
+        paymentMethodNonce:nonceFromTheClient,
         deviceData:deviceData,
         options: {
             submitForSettlement: true 
