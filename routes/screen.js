@@ -150,7 +150,7 @@ router.post('/signin', async (req,res) => {
         // maxAge: 60000,
         maxAge: 60*60*6*1000,
         httpOnly: true
-        //  ,secure: true
+         ,secure: true
         })
             res.redirect("/screen/admin");
         })
