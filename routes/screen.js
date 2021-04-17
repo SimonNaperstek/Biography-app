@@ -13,8 +13,9 @@ const braintree= require('braintree');
 const gateway = new braintree.BraintreeGateway({
     environment: braintree.Environment.Sandbox,
     merchantId: 'gsvpjdndywph2qhd',
-    publicKey:'j96ndx9hj4ny6m6y ',
-    privateKey:'89afbc59b04d256e6d1f856a48521aab'
+    publicKey:'j96ndx9hj4ny6m6y',
+    privateKey:'privateKey'
+    // privateKey:'89afbc59b04d256e6d1f856a48521aab'
 });
 
 
@@ -395,9 +396,44 @@ router.get('/writingType/:type',auth,(req,res)=>{
     }
 })
 
+router.get('/request', (req,res)=>{
+
+    res.send('in request..')
+    // console.log('request recevied!');
+    // const nounceFromTheClient = 'd5dcb2d2-c2fa-0b79-5b59-24fb39f9d378';
+    // const deviceData = {"correlation_id":"5eb3c1c3ee2f448cbac494c069f35532"};
+    // const amount = req.body.amount;
+    // // const amount = '1.0';
+
+    // gateway.transaction.sale({
+    //     amount:amount,
+    //     // paymentMethodNounce:nounceFromTheClient,
+    //     paymentMethodNounce:'fake-paypal-one-time-nounce',
+    //     deviceData:deviceData,
+    //     options: {
+    //         submitForSettlement: true 
+    //     }
+    // },(err, result)=>{
+    //     if(err != null) {
+            
+    //         console.log(err);
+    //         console.log('success: false');
+    //         console.log({success:false,error:err});
+    //             res.send({success:false,error:err});
+    //     }
+    //     else{
+    //         res.json({
+                
+    //             result: 'success'
+    //         });
+    //     }
+    // })
+})
+
 // Nounce request
 router.post('/request', async(req,res)=>{
-    const nounceFromTheClient = req.body.nonce;
+    console.log('request recevied!');
+    const nounceFromTheClient = req.body.payment_method_nonce;
     const deviceData = req.body.device_data;
     const amount = req.body.amount;
     // const amount = '1.0';
@@ -405,14 +441,16 @@ router.post('/request', async(req,res)=>{
     gateway.transaction.sale({
         amount:amount,
         // paymentMethodNounce:nounceFromTheClient,
-        paymentMethodNounce:'fake-paypal-one-time-nounce',
+        paymentMethodNounce:nounceFromTheClient,
         deviceData:deviceData,
         options: {
             submitForSettlement: true 
         }
     },(err, result)=>{
         if(err != null) {
-                res.send({success:false});
+            console.log('success: false');
+            console.log(err);
+                res.send({success:false,error:err});
         }
         else{
             res.json({
