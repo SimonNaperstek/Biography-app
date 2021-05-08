@@ -868,7 +868,7 @@ request.get(imgUrl, function (error, response, body) {
     console.log('triggered!');
     let uid= req.body.uid; 
     console.log(uid);
-    res.send('hi')
+    res.sendFile('tmp/'+'aka2.pdf');
  });
 
 module.exports = router
