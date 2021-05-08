@@ -868,7 +868,8 @@ request.get(imgUrl, function (error, response, body) {
     console.log('triggered!');
     let uid= req.body.uid; 
     console.log(uid);
-    res.sendFile('tmp/'+'aka2.pdf');
+    res.send('https://firebasestorage.googleapis.com/v0/b/generations-a0df0.appspot.com/o/bd37f096-7ff1-48[…]?alt=media&token=bd37f096-7ff1-48dc-b740-13b5fe16d232');
+    // res.sendFile('tmp/'+'aka2.pdf');
  });
 
 module.exports = router
