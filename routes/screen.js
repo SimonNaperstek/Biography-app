@@ -701,11 +701,12 @@ if(data){
     setTimeout(() => {
         let uid= uuid();
         console.log(uid);
+        doc.save('tmp/'+uid+'.pdf');
         // link
         let z = upload('tmp/'+uid+'.pdf', uid);
                 let link = "https://firebasestorage.googleapis.com/v0/b/" + 'generations-a0df0.appspot.com' + "/o/" + encodeURIComponent(uid) + "?alt=media&token=" + uid;
                 console.log(link);
-                doc.save('tmp/'+uid+'.pdf');
+                
         console.log('[+] saved!');
         res.send(link);
      
