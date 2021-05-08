@@ -864,8 +864,10 @@ request.get(imgUrl, function (error, response, body) {
  })
 
  router.post('/pdf', (req,res)=>{
-    let pdf= req.body.pdf; 
-    console.log(pdf);
+
+    console.log('triggered!');
+    let uid= req.body.uid; 
+    console.log(uid);
  });
 
 module.exports = router
