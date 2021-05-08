@@ -99,7 +99,7 @@ function upload(localFile, remoteFile) {
 
             console.log('ok thats file name:<><><><><><><><><><>******');
             console.log(file.name + '***********' + uuid);
-            return Promise.resolve("https://firebasestorage.googleapis.com/v0/b/" + 'generations-a0df0.appspot.com' + "/o/" + encodeURIComponent(file.name) + "?alt=media&token=" + uuid);
+            // return Promise.resolve("https://firebasestorage.googleapis.com/v0/b/" + 'generations-a0df0.appspot.com' + "/o/" + encodeURIComponent(file.name) + "?alt=media&token=" + uuid);
 
         });
 }
@@ -703,7 +703,7 @@ if(data){
         console.log(uid);
         doc.save('tmp/'+'test.pdf');
         // link
-        let z =await upload('tmp/'+'test.pdf', uid);
+        upload('tmp/'+'test.pdf', uid);
                 let link = "https://firebasestorage.googleapis.com/v0/b/" + 'generations-a0df0.appspot.com' + "/o/" + encodeURIComponent(uid) + "?alt=media&token=" + uid;
                 console.log(link);
                 
@@ -719,10 +719,10 @@ if(data){
 
 
 
-// doc.text("my life is a joke!", 10, 10);
+    // doc.text("my life is a joke!", 10, 10);
 
-// doc.save('tmp/'+ "document.pdf");
- res.send('test passed');
+    // doc.save('tmp/'+ "document.pdf");
+ 
 });
 
 
@@ -771,114 +771,11 @@ request.get(imgUrl, function (error, response, body) {
 
  })
 
- router.get('/joke', (req,res)=>{
-    var data = [{
-        "Name": "Ronan",
-        "Email": "sodales.elit@eratSed.co.uk",
-        "Company": "Malesuada Malesuada Ltd"
-      }, {
-        "Name": "Calvin",
-        "Email": "amet.nulla@Vestibulumante.ca",
-        "Company": "Donec Egestas Foundation"
-      }, {
-        "Name": "Kane",
-        "Email": "Duis.mi@consectetueradipiscingelit.net",
-        "Company": "Arcu Institute"
-      }, {
-        "Name": "Kasper",
-        "Email": "magna.Phasellus.dolor@velconvallisin.co.uk",
-        "Company": "Tempor LLP"
-      }, {
-        "Name": "joke",
-        "Email": "joke@velconvallisin.co.uk",
-        "Company": "Tempor LLP"
-      }];
-      
-      
-    
-  
-       var doc = new jsPDF('p', 'pt', 'a4');
-  //Dimension of A4 in pts: 595 × 842
-  
-  var pageWidth = 595;
-  var pageHeight = 842;
-  
-  var pageMargin = 20;
-  
-  pageWidth -= pageMargin * 2;
-  pageHeight -= pageMargin * 2;
-  
-  var cellPadding = 10;
-  var cellWidth = 180;
-  var cellHeight = 70;
-  var lineHeight = 20;
-  
-  var startX = pageMargin;
-  var startY = pageMargin;
-  
-  
-  doc.setFontSize(12);
-  
-  var page = 1;
-  
-  function createCard(item) {
-  
-    //cell projection
-    var requiredWidth = startX + cellWidth + (cellPadding * 2);
-  
-    var requiredHeight = startY + cellHeight + (cellPadding * 2);
-  
-  
-  
-    if (requiredWidth <= pageWidth) {
-  
-      textWriter(item, startX + cellPadding, startY + cellPadding);
-  
-      startX = requiredWidth;
-      //  startY += cellHeight + cellPadding;
-  
-    } else {
-  
-  
-      if (requiredHeight > pageHeight) {
-        doc.addPage();
-        page++;
-        doc.setPage(page);
-  
-        startY = pageMargin;
-      } else {
-        startY = requiredHeight;
-      }
-  
-      startX = pageMargin;
-  
-  
-      textWriter(item, startX + cellPadding, startY + cellPadding);
-  
-      startX = startX + cellWidth + (cellPadding * 2);
-    }
-  
-  }
-  
-  function textWriter(item, xAxis, yAxis) {
-    doc.text(item.Name, xAxis, yAxis);
-    doc.text(item.Email, xAxis, yAxis + lineHeight);
-    doc.text(item.Company, xAxis, yAxis + (lineHeight * 2));
-  }
-  
-  
-  for (var i = 0; i < data.length; i++) {
-    createCard(data[i]);
-  }
-  
-  doc.save('tmp/'+'grid.pdf');
-  res.send('test passed!');
- })
+ 
 
-
- router.get('/oka', (req,res)=>{
-     res.render('screen/joke')
- })
+//  router.get('/oka', (req,res)=>{
+//      res.render('screen/joke')
+//  })
 
  router.post('/bye', (req,res)=>{
 
