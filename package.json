@@ -21,7 +21,10 @@
     "firebase": "^8.2.10",
     "firebase-admin": "^9.5.0",
     "firebase-auth": "^0.1.2",
-    "jsonwebtoken": "^8.5.1"
+    "image-data-uri": "^2.0.1",
+    "jsonwebtoken": "^8.5.1",
+    "jspdf": "^2.3.1",
+    "uuidv4": "^6.2.7"
   },
   "devDependencies": {
     "dotenv": "^8.2.0",

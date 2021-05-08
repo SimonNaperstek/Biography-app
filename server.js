@@ -23,8 +23,8 @@ var upload = require('express-fileupload')
 app.use(upload({
     preserveExtension: true,
     preserveExtension: 3,
-    useTempFiles : true,
-    tempFileDir : __dirname + '/tmp/'
+    // useTempFiles : true,
+    // tempFileDir : __dirname + '/tmp/'
 }))
 
 // All routes
