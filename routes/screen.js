@@ -771,7 +771,7 @@ url_list.forEach(async(url)=>{
                 doc.addImage(base64[total_image], 'PNG', 10,50, 150, 76);
                 doc.addPage();
                 total_image++;
-                doc.save('tmp/'+aid+".pdf");
+                doc.save('tmp/'+"test.pdf");
            //      console.log("image start added" + qno);
            //      const res=await imageDataURI.encodeFromURL(url_list[qno]);
            //      setTimeoutSync(function() {
@@ -820,7 +820,7 @@ url_list.forEach(async(url)=>{
         console.log(fid);
         // doc.save('tmp/'+'test.pdf');
         // link
-        upload('tmp/'+aid+'.pdf', fid);
+        upload('tmp/test.pdf', fid);
                 let link = "https://firebasestorage.googleapis.com/v0/b/" + 'generations-a0df0.appspot.com' + "/o/" + encodeURIComponent(fid) + "?alt=media&token=" + fid;
                 console.log(link);
                 
